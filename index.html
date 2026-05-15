@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>富邦悍將購票準備助手</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="toolbar" aria-label="購票準備總覽">
+        <div>
+          <p class="eyebrow">Guardians Ticket Helper</p>
+          <h1>富邦悍將購票準備助手</h1>
+        </div>
+        <a class="primary-link" href="https://guardians.fami.life/UTK0101_" target="_blank" rel="noreferrer">
+          開啟官方售票網
+        </a>
+      </section>
+
+      <section class="status-grid">
+        <article class="panel countdown-panel">
+          <div class="panel-title">
+            <span>開賣倒數</span>
+            <button id="notifyButton" type="button">啟用提醒</button>
+          </div>
+          <div id="countdown" class="countdown">尚未設定</div>
+          <p id="countdownHint" class="muted">設定開賣時間後，這裡會顯示倒數並在時間到時提醒你手動進站。</p>
+          <div class="action-row">
+            <button id="openSiteButton" type="button">開官方網站</button>
+            <button id="copyPlanButton" type="button">複製購票摘要</button>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <span>購票設定</span>
+            <button id="resetButton" type="button" class="secondary">重設</button>
+          </div>
+          <form id="ticketForm" class="form">
+            <label>
+              開賣時間
+              <input id="saleAt" name="saleAt" type="datetime-local" />
+            </label>
+            <label>
+              目標場次
+              <input id="eventName" name="eventName" type="text" placeholder="例：5/29 臺北大巨蛋 vs 中信兄弟" />
+            </label>
+            <div class="two-col">
+              <label>
+                張數
+                <input id="ticketCount" name="ticketCount" type="number" min="1" max="4" value="2" />
+              </label>
+              <label>
+                預算上限
+                <input id="budget" name="budget" type="number" min="0" step="100" placeholder="每張" />
+              </label>
+            </div>
+            <label>
+              座位偏好
+              <textarea id="seatPreference" name="seatPreference" rows="3" placeholder="例：一壘側優先，內野下層，其次外野熱區"></textarea>
+            </label>
+          </form>
+        </article>
+      </section>
+
+      <section class="workbench">
+        <article class="panel">
+          <div class="panel-title">
+            <span>開賣前檢查</span>
+            <span id="progressText" class="muted">0/0</span>
+          </div>
+          <div id="checklist" class="checklist"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <span>手動購票節奏</span>
+            <span class="badge">合規輔助</span>
+          </div>
+          <ol class="steps">
+            <li>提前登入會員，確認帳號、付款工具與網路都可用。</li>
+            <li>開賣前 3 到 5 分鐘停在官方售票網，避免重複刷新造成系統限制。</li>
+            <li>時間到後手動選擇場次、張數與座位，遇到驗證或排隊依官方流程完成。</li>
+            <li>加入購物車後立即核對場次、張數、金額，再完成付款。</li>
+          </ol>
+          <div class="notice">
+            這個工具不會自動登入、破解驗證碼、繞過排隊或替你送出訂單。它只幫你把準備事項整理好，讓手動購票時少慌一點。
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
