@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>富邦悍將購票準備助手</title>
+    <title>Tixcraft 購票輔助</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="app">
-      <section class="toolbar" aria-label="購票準備總覽">
+      <section class="toolbar" aria-label="購票輔助總覽">
         <div>
-          <p class="eyebrow">Guardians Ticket Helper</p>
-          <h1>富邦悍將購票準備助手</h1>
+          <p class="eyebrow">Tixcraft Assistant</p>
+          <h1>Tixcraft 購票輔助</h1>
         </div>
-        <a class="primary-link" href="https://guardians.fami.life/UTK0101_" target="_blank" rel="noreferrer">
-          開啟官方售票網
+        <a id="primarySiteLink" class="primary-link" href="https://tixcraft.com/activity/detail/26_aespa" target="_blank" rel="noreferrer">
+          開啟活動頁
         </a>
       </section>
 
@@ -25,10 +25,11 @@
             <button id="notifyButton" type="button">啟用提醒</button>
           </div>
           <div id="countdown" class="countdown">尚未設定</div>
-          <p id="countdownHint" class="muted">設定開賣時間後，這裡會顯示倒數並在時間到時提醒你手動進站。</p>
+          <p id="countdownHint" class="muted">設定開賣時間後，這裡會顯示倒數並在時間到時提醒你。</p>
           <div class="action-row">
-            <button id="openSiteButton" type="button">開官方網站</button>
-            <button id="copyPlanButton" type="button">複製購票摘要</button>
+            <button id="openSiteButton" type="button">開活動頁</button>
+            <button id="openGameButton" type="button">開購票頁</button>
+            <button id="copyPlanButton" type="button">複製摘要</button>
           </div>
         </article>
 
@@ -39,12 +40,16 @@
           </div>
           <form id="ticketForm" class="form">
             <label>
+              活動網址
+              <input id="activityUrl" name="activityUrl" type="url" placeholder="https://tixcraft.com/activity/detail/..." />
+            </label>
+            <label>
               開賣時間
               <input id="saleAt" name="saleAt" type="datetime-local" />
             </label>
             <label>
               目標場次
-              <input id="eventName" name="eventName" type="text" placeholder="例：5/29 臺北大巨蛋 vs 中信兄弟" />
+              <input id="eventName" name="eventName" type="text" />
             </label>
             <div class="two-col">
               <label>
@@ -58,7 +63,15 @@
             </div>
             <label>
               座位偏好
-              <textarea id="seatPreference" name="seatPreference" rows="3" placeholder="例：一壘側優先，內野下層，其次外野熱區"></textarea>
+              <textarea id="seatPreference" name="seatPreference" rows="3" placeholder="例：VIP、5880、看台、下層"></textarea>
+            </label>
+            <label>
+              預售碼或會員碼
+              <input id="presaleCode" name="presaleCode" type="text" autocomplete="off" placeholder="沒有就留空" />
+            </label>
+            <label class="inline-check">
+              <input id="autoSubmit" name="autoSubmit" type="checkbox" />
+              <span>資料齊全時嘗試加入購物車</span>
             </label>
           </form>
         </article>
@@ -75,19 +88,30 @@
 
         <article class="panel">
           <div class="panel-title">
-            <span>手動購票節奏</span>
-            <span class="badge">合規輔助</span>
+            <span>輔助腳本</span>
+            <a id="bookmarkletLink" class="secondary-link" href="#">拖到書籤列</a>
           </div>
           <ol class="steps">
-            <li>提前登入會員，確認帳號、付款工具與網路都可用。</li>
-            <li>開賣前 3 到 5 分鐘停在官方售票網，避免重複刷新造成系統限制。</li>
-            <li>時間到後手動選擇場次、張數與座位，遇到驗證或排隊依官方流程完成。</li>
-            <li>加入購物車後立即核對場次、張數、金額，再完成付款。</li>
+            <li>先在這裡設定張數、預算、偏好與預售碼。</li>
+            <li>最快方式是安裝瀏覽器 Userscript，讓每個 Tixcraft 頁面載入後自動接續執行。</li>
+            <li>書籤腳本可備用，但頁面跳轉後要再點一次；登入、粉絲資格、驗證碼、排隊或付款畫面請手動處理。</li>
           </ol>
-          <div class="notice">
-            這個工具不會自動登入、破解驗證碼、繞過排隊或替你送出訂單。它只幫你把準備事項整理好，讓手動購票時少慌一點。
+          <div class="action-row">
+            <button id="copyUserScriptButton" type="button">複製 Userscript</button>
+            <button id="copyScriptButton" type="button">複製書籤腳本</button>
           </div>
+          <textarea id="scriptPreview" class="script-preview" rows="8" spellcheck="false" aria-label="輔助腳本"></textarea>
         </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <span>自動化邊界</span>
+          <span class="badge">人工確認保留</span>
+        </div>
+        <div class="notice">
+          這個工具不會破解驗證碼、不繞過排隊、不代填帳密，也不會替你完成付款。它只協助打開登入、前往購票流程、在可見且可購買的座位區中隨機挑選，並在需要資格確認時停下來。
+        </div>
       </section>
     </main>
 

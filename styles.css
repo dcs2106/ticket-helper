@@ -5,9 +5,9 @@
   --muted: #63706b;
   --line: #d8ded6;
   --panel: #ffffff;
-  --accent: #007a5e;
-  --accent-strong: #005f49;
-  --gold: #c59b3b;
+  --accent: #0d6f8f;
+  --accent-strong: #084f68;
+  --gold: #d1902f;
   --danger: #a7392f;
   font-family: Inter, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
 }
@@ -20,8 +20,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(135deg, rgba(0, 122, 94, 0.12), transparent 35%),
-    linear-gradient(315deg, rgba(197, 155, 59, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(13, 111, 143, 0.12), transparent 35%),
+    linear-gradient(315deg, rgba(209, 144, 47, 0.14), transparent 30%),
     var(--bg);
   color: var(--ink);
 }
@@ -59,6 +59,16 @@ button.secondary {
 
 button.secondary:hover {
   background: #dfe9e4;
+}
+
+.secondary-link {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #eef3f0;
+  color: var(--accent-strong);
+  cursor: grab;
+  padding: 0.55rem 0.75rem;
+  text-decoration: none;
 }
 
 .app {
@@ -177,6 +187,19 @@ textarea {
   resize: vertical;
 }
 
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+}
+
+.inline-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -240,6 +263,13 @@ textarea {
   line-height: 1.65;
   padding: 14px;
   border-radius: 0 8px 8px 0;
+}
+
+.script-preview {
+  margin-top: 14px;
+  min-height: 180px;
+  font: 0.82rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre;
 }
 
 .toast {
